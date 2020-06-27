@@ -51,3 +51,8 @@ todos.forEach(function(todo){
 document.querySelector('#add-todo').addEventListener('click', function(){
     console.log('new todo added');
 })
+
+// search input event handler
+document.querySelector('#search-todo').addEventListener('input', function (e) {
+    console.log(e.target.value);
+})
