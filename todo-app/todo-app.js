@@ -1,3 +1,5 @@
+// const { filter } = require("minimatch");
+
 const todos = [{
     text: 'Order cat food',
     completed: false
@@ -19,19 +21,42 @@ const todos = [{
 const incompleteTodo = todos.filter(function(todo){
     return !todo.completed;
 })
-// console.log(incompleteTodo.length);
 
 const h2 = document.createElement('h2');
 h2.textContent = `You have ${incompleteTodo.length} todos left`;
 document.querySelector('body').appendChild(h2);
 
-todos.forEach(function(todo){
-    // console.log(todo.text);
-    const p = document.createElement('p');
-    p.textContent = todo.text;
-    document.querySelector('body').appendChild(p);
-})
+// todos.forEach(function(todo){
+//     const p = document.createElement('p');
+//     p.textContent = todo.text;
+//     document.querySelector('body').appendChild(p);
+// })
 
+const filters = {
+    searchText: ''
+}
+
+
+const renderTodos = function (todos, filters) {
+    const filteredTodos = todos.filter(function (todo) {
+        return todo.text.toLowerCase().includes(filters.searchText.toLowerCase());
+    })
+    
+    document.querySelector('#todos').innerHTML = ''
+    
+    filteredTodos.forEach(function (todo) {
+        const p = document.createElement('p');
+        p.textContent = todo.text;
+        document.querySelector('#todos').appendChild(p);
+    })
+}
+
+renderTodos(todos, filters);
+    
+document.querySelector('#search-todo').addEventListener('input', function(e) {
+        filters.searchText = e.target.value
+        renderTodos(todos, filters);
+    })
 
 
 // const thes = document.querySelectorAll('p');
@@ -53,6 +78,6 @@ document.querySelector('#add-todo').addEventListener('click', function(){
 })
 
 // search input event handler
-document.querySelector('#search-todo').addEventListener('input', function (e) {
-    console.log(e.target.value);
-})
+// document.querySelector('#search-todo').addEventListener('input', function (e) {
+//     console.log(e.target.value);
+// })
