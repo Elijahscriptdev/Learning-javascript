@@ -21,7 +21,7 @@ const renderNotes = function (notes, filters) {
     })
 
     document.querySelector('#notes-con').innerHTML = ''
-    
+
     filteredNotes.forEach(function (note) {
         const noteEl = document.createElement('p');
         noteEl.textContent = note.title;
@@ -31,16 +31,22 @@ const renderNotes = function (notes, filters) {
 renderNotes(notes, filters);
 
 // target search input
-document.querySelector('#search-text').addEventListener('input', function(e) {
+document.querySelector('#search-text').addEventListener('input', function (e) {
     filters.searchText = e.target.value
     renderNotes(notes, filters);
 })
 
 // target form
-document.querySelector('#name-form').addEventListener('submit', function(e){
-    e.preventDefault();
-    console.log(e.target.elements.firstName.value);
-    e.target.elements.firstName.value = '';
+// document.querySelector('#name-form').addEventListener('submit', function (e) {
+//     e.preventDefault();
+//     console.log(e.target.elements.firstName.value);
+//     e.target.elements.firstName.value = '';
+// })
+
+// target checkbox
+document.querySelector('#fun').addEventListener('change', function (e) {
+    console.log(e.target.checked);
+    console.log('clicked');
 })
 
 // document.querySelector('#create-note').addEventListener('click', function(e){
