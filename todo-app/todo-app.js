@@ -57,6 +57,11 @@ document.querySelector('#search-todo').addEventListener('input', function(e) {
 document.querySelector('#todo-form').addEventListener('submit', function (e) {
     e.preventDefault();
     console.log(e.target.elements.newTodo.value);
+    todos.push({
+        text: e.target.elements.newTodo.value,
+        completed: false
+    })
+    renderTodos(todos, filters);
     e.target.elements.newTodo.value = '';
 })
 // const thes = document.querySelectorAll('p');
