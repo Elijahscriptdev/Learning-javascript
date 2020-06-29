@@ -17,12 +17,12 @@ const todos = [{
     completed: true
 }]
 
-
+// search input
 const filters = {
     searchText: ''
 }
 
-
+// render filtered todos
 const renderTodos = function (todos, filters) {
     const filteredTodos = todos.filter(function (todo) {
         return todo.text.toLowerCase().includes(filters.searchText.toLowerCase());
@@ -47,12 +47,18 @@ const renderTodos = function (todos, filters) {
 
 renderTodos(todos, filters);
     
+// target search input
 document.querySelector('#search-todo').addEventListener('input', function(e) {
         filters.searchText = e.target.value
         renderTodos(todos, filters);
     })
 
-
+// target form
+document.querySelector('#todo-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    console.log(e.target.elements.newTodo.value);
+    e.target.elements.newTodo.value = '';
+})
 // const thes = document.querySelectorAll('p');
 // thes.forEach(function(p){
 //     // if(p.textContent == 'the'){
@@ -67,9 +73,9 @@ document.querySelector('#search-todo').addEventListener('input', function(e) {
 // })
 
 // new todo creation
-document.querySelector('#add-todo').addEventListener('click', function(){
-    console.log('new todo added');
-})
+// document.querySelector('#add-todo').addEventListener('click', function(){
+//     console.log('new todo added');
+// })
 
 // search input event handler
 // document.querySelector('#search-todo').addEventListener('input', function (e) {
