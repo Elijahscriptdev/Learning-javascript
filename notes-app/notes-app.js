@@ -30,9 +30,17 @@ const renderNotes = function (notes, filters) {
 }
 renderNotes(notes, filters);
 
+// target search input
 document.querySelector('#search-text').addEventListener('input', function(e) {
     filters.searchText = e.target.value
     renderNotes(notes, filters);
+})
+
+// target form
+document.querySelector('#name-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    console.log(e.target.elements.firstName.value);
+    e.target.elements.firstName.value = '';
 })
 
 // document.querySelector('#create-note').addEventListener('click', function(e){
