@@ -1,4 +1,3 @@
-// const { filter } = require("minimatch");
 
 const todos = [{
     text: 'Order cat food',
@@ -73,25 +72,3 @@ document.querySelector('#hide-completed').addEventListener('click', function(e){
     filters.hideCompleted = e.target.checked
     renderTodos(todos, filters);
 })
-// const thes = document.querySelectorAll('p');
-// thes.forEach(function(p){
-//     // if(p.textContent == 'the'){
-//     //     p.remove();
-//     //     console.log(p);
-//     // }
-//     if (p.textContent.includes('the')) {
-//         p.remove();
-//         console.log(p);
-//     }
-//     // console.log(thes);
-// })
-
-// new todo creation
-// document.querySelector('#add-todo').addEventListener('click', function(){
-//     console.log('new todo added');
-// })
-
-// search input event handler
-// document.querySelector('#search-todo').addEventListener('input', function (e) {
-//     console.log(e.target.value);
-// })
