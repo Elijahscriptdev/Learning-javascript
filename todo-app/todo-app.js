@@ -1,20 +1,22 @@
 
-const todos = [{
-    text: 'Order cat food',
-    completed: false
-}, {
-    text: 'clean the kitchen',
-    completed: true
-}, {
-    text: 'Buy food',
-    completed: true
-}, {
-    text: 'Do work',
-    completed: false
-}, {
-    text: 'Exercise',
-    completed: true
-}]
+let todos = [
+//     {
+//     text: 'Order cat food',
+//     completed: false
+// }, {
+//     text: 'clean the kitchen',
+//     completed: true
+// }, {
+//     text: 'Buy food',
+//     completed: true
+// }, {
+//     text: 'Do work',
+//     completed: false
+// }, {
+//     text: 'Exercise',
+//     completed: true
+// }
+]
 
 // search input
 const filters = {
@@ -22,6 +24,10 @@ const filters = {
     hideCompleted: false
 }
 
+const todoJSON = localStorage.getItem('todos')
+if(todoJSON !== null){
+    todos = JSON.parse(todoJSON)
+}
 // render filtered todos
 const renderTodos = function (todos, filters) {
     const filteredTodos = todos.filter(function (todo) {
@@ -58,11 +64,12 @@ document.querySelector('#search-todo').addEventListener('input', function(e) {
 // target form
 document.querySelector('#todo-form').addEventListener('submit', function (e) {
     e.preventDefault();
-    console.log(e.target.elements.newTodo.value);
+    // console.log(e.target.elements.newTodo.value);
     todos.push({
         text: e.target.elements.newTodo.value,
         completed: false
     })
+    localStorage.setItem('todos', JSON.stringify(todos));
     renderTodos(todos, filters);
     e.target.elements.newTodo.value = '';
 })
