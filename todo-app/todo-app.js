@@ -64,7 +64,6 @@ document.querySelector('#search-todo').addEventListener('input', function(e) {
 // target form
 document.querySelector('#todo-form').addEventListener('submit', function (e) {
     e.preventDefault();
-    // console.log(e.target.elements.newTodo.value);
     todos.push({
         text: e.target.elements.newTodo.value,
         completed: false
