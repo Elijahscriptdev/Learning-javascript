@@ -38,9 +38,19 @@ const renderTodos = function (todos, filters) {
 
 // handle dom elements for each todo
 const generateTodoDOM = (todo) => {
-    const p = document.createElement('p');
-    p.textContent = todo.text;
-    return p;
+    const todoEl = document.createElement('div');
+    const checkEl = document.createElement('input');
+    checkEl.setAttribute('type', 'checkbox');
+    const textEl = document.createElement('span');
+    textEl.textContent = todo.text;
+    const removeButton = document.createElement('button');
+    removeButton.textContent = 'x';
+
+    todoEl.appendChild(checkEl);
+    todoEl.appendChild(textEl);
+    todoEl.appendChild(removeButton);
+
+    return todoEl;
 }
 
 // handle incomplete todo message
