@@ -1,43 +1,12 @@
-// const { Console } = require("console");
 
-let notes = [
-//     {
-//     title: 'my next food',
-//     body: 'I would love starch and banga soup'
-// }, {
-//     title: 'hobbies to work on',
-//     body: 'writing skill'
-// }, {
-//     title: 'house modification',
-//     body: 'get a new seat'
-// }
-]
+const notes = getSavedNotes();
 
 // store the filters in an obj
 const filters = {
     searchText: ''
 }
 
-// const user = {
-//     name: 'seth',
-//     age: 31
-// }
-
-// const userData = JSON.stringify(user);
-// console.log(userData);
-// localStorage.setItem('user', userData);
-
-// const userData = localStorage.getItem('user');
-// console.log(userData);
-// const users = JSON.parse(userData);
-// console.log(`${users.name} is ${users.age}`);
-
-const noteJSON = localStorage.getItem('notes')
-
-if(noteJSON !== null){
-    notes = JSON.parse(noteJSON)
-}
-
+// create note andset to local storage
 document.querySelector('#create-note').addEventListener('click', function(e){
     notes.push({
         title: '',
@@ -47,24 +16,6 @@ document.querySelector('#create-note').addEventListener('click', function(e){
     renderNotes(notes, filters);
 })
 
-// render the notes data on the browser
-const renderNotes = function (notes, filters) {
-    const filteredNotes = notes.filter(function (note) {
-        return note.title.toLowerCase().includes(filters.searchText.toLowerCase());
-    })
-
-    document.querySelector('#notes-con').innerHTML = ''
-
-    filteredNotes.forEach(function (note) {
-        const noteEl = document.createElement('p');
-        if(note.title.length > 0){
-            noteEl.textContent = note.title;
-        }else{
-            noteEl.textContent = 'unamed note';
-        }
-        document.querySelector('#notes-con').appendChild(noteEl);
-    })
-}
 renderNotes(notes, filters);
 
 // target search input
