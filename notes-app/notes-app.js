@@ -9,6 +9,7 @@ const filters = {
 // create note andset to local storage
 document.querySelector('#create-note').addEventListener('click', function(e){
     notes.push({
+        id: uuidv4(),
         title: '',
         description: ''
     })
