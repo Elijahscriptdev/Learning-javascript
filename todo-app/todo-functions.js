@@ -1,3 +1,5 @@
+// const { default: generate } = require("@babel/generator");
+
 // fetch existing to from local storage
 const getSavedTodos = () => {
     const todoJSON = localStorage.getItem('todos')
@@ -27,13 +29,23 @@ const renderTodos = function (todos, filters) {
 
     document.querySelector('#todos').innerHTML = ''
 
-    const h2 = document.createElement('h2');
-    h2.textContent = `You have ${incompleteTodo.length} todos left`;
-    document.querySelector('#todos').appendChild(h2);
+    document.querySelector('#todos').appendChild(generateIcompleteTodoMessage(incompleteTodo));
 
     filteredTodos.forEach(function (todo) {
-        const p = document.createElement('p');
-        p.textContent = todo.text;
-        document.querySelector('#todos').appendChild(p);
+        document.querySelector('#todos').appendChild(generateTodoDOM(todo));
     })
+}
+
+// handle dom elements for each todo
+const generateTodoDOM = (todo) => {
+    const p = document.createElement('p');
+    p.textContent = todo.text;
+    return p;
+}
+
+// handle incomplete todo message
+const generateIcompleteTodoMessage = (incompleteTodo) => {
+    const h2 = document.createElement('h2');
+    h2.textContent = `You have ${incompleteTodo.length} todos left`;
+    return h2
 }
