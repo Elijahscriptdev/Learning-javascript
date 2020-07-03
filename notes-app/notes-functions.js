@@ -9,14 +9,43 @@ const getSavedNotes = () => {
     }
 }
 
+// remove note
+const removeNote = (id) => {
+    const noteIndex = notes.findIndex(function(note){
+        // console.log(note.id);
+        console.log(id);
+
+        return note.id === id;
+    })
+
+    if(noteIndex > -1){
+        notes.splice(noteIndex, 1)
+    }
+}
+
 // Generating the DOM structure for a note
 const generateNoteDOM = (note) => {
-    const noteEl = document.createElement('p');
+    const noteEl = document.createElement('div');
+    const textEl = document.createElement('span');
+    const button = document.createElement('button');
+
+    // setup remove note button
+    button.textContent = 'x'
+    noteEl.appendChild(button)
+    button.addEventListener('click', function(){
+        removeNote(note.id)
+        // SavedNotes(notes)
+        localStorage.setItem('notes', JSON.stringify(notes));
+        renderNotes(notes, filters)        
+    })
+
+    // setup note title text
     if (note.title.length > 0) {
-        noteEl.textContent = note.title;
+        textEl.textContent = note.title;
     } else {
-        noteEl.textContent = 'unamed note';
+        textEl.textContent = 'unamed note';
     }
+    noteEl.appendChild(textEl);
     return noteEl;
 }
 
