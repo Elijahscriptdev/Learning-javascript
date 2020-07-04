@@ -36,6 +36,20 @@ const renderTodos = function (todos, filters) {
     })
 }
 
+// remove todo
+const removetodo = (id) => {
+    const todoIndex = todos.findIndex(function(todo){
+        // console.log(note.id);
+        console.log(id);
+
+        return todo.id === id;
+    })
+
+    if(todoIndex > -1){
+        todos.splice(todoIndex, 1)
+    }
+}
+
 // handle dom elements for each todo
 const generateTodoDOM = (todo) => {
     const todoEl = document.createElement('div');
@@ -45,6 +59,13 @@ const generateTodoDOM = (todo) => {
     textEl.textContent = todo.text;
     const removeButton = document.createElement('button');
     removeButton.textContent = 'x';
+
+    // setup remove button
+    removeButton.addEventListener('click', function(){
+        removetodo(todo.id);
+        saveTodos()
+        renderTodos(todos, filters);
+    })
 
     todoEl.appendChild(checkEl);
     todoEl.appendChild(textEl);
