@@ -39,9 +39,6 @@ const renderTodos = function (todos, filters) {
 // remove todo
 const removetodo = (id) => {
     const todoIndex = todos.findIndex(function(todo){
-        // console.log(note.id);
-        console.log(id);
-
         return todo.id === id;
     })
 
@@ -50,11 +47,22 @@ const removetodo = (id) => {
     }
 }
 
+//  toggle checkbox
+const toggleTodo = (id) => {
+    const todo = todos.find(function(todo){
+        return todo.id === id;
+    })
+    if (todo !== undefined){
+        todo.completed = !todo.completed
+    }
+}
+
 // handle dom elements for each todo
 const generateTodoDOM = (todo) => {
     const todoEl = document.createElement('div');
     const checkEl = document.createElement('input');
     checkEl.setAttribute('type', 'checkbox');
+    checkEl.checked = todo.completed;
     const textEl = document.createElement('span');
     textEl.textContent = todo.text;
     const removeButton = document.createElement('button');
@@ -63,6 +71,13 @@ const generateTodoDOM = (todo) => {
     // setup remove button
     removeButton.addEventListener('click', function(){
         removetodo(todo.id);
+        saveTodos()
+        renderTodos(todos, filters);
+    })
+
+    // setup checked todo.completed
+    checkEl.addEventListener('change', function () {
+        toggleTodo(todo.id)
         saveTodos()
         renderTodos(todos, filters);
     })
