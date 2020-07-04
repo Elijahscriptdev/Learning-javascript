@@ -1,4 +1,3 @@
-
 const notes = getSavedNotes();
 
 // store the filters in an obj

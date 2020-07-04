@@ -1,4 +1,3 @@
-
 let todos = getSavedTodos();
 
 // search input

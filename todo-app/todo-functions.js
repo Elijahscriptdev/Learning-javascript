@@ -1,5 +1,3 @@
-// const { default: generate } = require("@babel/generator");
-
 // fetch existing to from local storage
 const getSavedTodos = () => {
     const todoJSON = localStorage.getItem('todos')
